@@ -47,23 +47,13 @@
   <div id="dv3"></div>
 
   <script>
-    var isDown = [];
-    isDown['dv'] = false;
-    isDown['dv2'] = false;
-    isDown['dv3'] = false;
-    console.log(isDown);
-
-    dragDiv('dv');
-    dragDiv('dv2');
-    dragDiv('dv3');
-    //获取元素
     function dragDiv(elementid) {
       var el = document.getElementById(elementid);
       var x = 0;
       var y = 0;
       var l = 0;
       var t = 0;
-      isDown[elementid] = false;
+      var isDown = false;
 
       //鼠标按下事件
       el.onmousedown = function (e) {
@@ -77,7 +67,7 @@
         l = el.offsetLeft;
         t = el.offsetTop;
         //开关打开
-        isDown[elementid] = true;
+        isDown = true;
         //设置样式
         el.style.cursor = 'move';
       }
@@ -85,7 +75,7 @@
 
       //鼠标移动
       el.onmousemove = function (e) {
-        if (isDown[elementid] == false) {
+        if (isDown == false) {
           return;
         }
         //获取x和y
@@ -103,10 +93,16 @@
       //鼠标抬起事件
       el.onmouseup = function () {
         //开关关闭
-        isDown[elementid] = false;
+        isDown = false;
         el.style.cursor = 'default';
       }
     }
+
+
+    dragDiv('dv');
+    dragDiv('dv2');
+    dragDiv('dv3');
+    //获取元素
   </script>
 </body>
 
